@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Matching Decomp"
+  short_description: "Create and review matching decomp projects."
+  default_prompt: "Use this skill to plan, implement, or review a matching decompilation project."

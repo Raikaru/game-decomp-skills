@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Functional Decomp"
+  short_description: "Create and review functional decomp projects."
+  default_prompt: "Use this skill to plan, implement, or review a functional decompilation project."

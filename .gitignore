@@ -1,0 +1,34 @@
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# Local test/scratch outputs
+skill-forward-tests/
+tmp/
+scratch/
+
+# Never commit original game artifacts or generated copyrighted bundles
+*.z64
+*.n64
+*.v64
+*.iso
+*.gcm
+*.dol
+*.exe
+*.bin
+*.elf
+*.rom
+*.wad
+*.pak
+*.otr
+*.sav
+artifacts-local/
+original-private/
+baserom-local/
+assets-private/
+userdata/
+tests/fixtures-private/
+traces-local/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Matching Decomp Port"
+  short_description: "Plan, implement, and review matching decomp PC ports."
+  default_prompt: "Use this skill to analyze, implement, or review a native PC port from a matching decompilation repo."

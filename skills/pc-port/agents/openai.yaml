@@ -1,0 +1,4 @@
+interface:
+  display_name: "PC Port"
+  short_description: "Analyze and plan decompilation-to-PC-port work."
+  default_prompt: "Use this skill to triage a reverse-engineered or decompiled game project and produce a PC-port architecture plan."

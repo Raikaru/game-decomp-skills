@@ -1,0 +1,4 @@
+interface:
+  display_name: "Static Recomp Port"
+  short_description: "Plan, implement, and review static recomp PC ports."
+  default_prompt: "Use this skill to analyze, implement, or review a static recompilation-based PC port."

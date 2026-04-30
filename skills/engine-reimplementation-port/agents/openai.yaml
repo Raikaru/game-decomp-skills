@@ -1,0 +1,4 @@
+interface:
+  display_name: "Engine Reimplementation Port"
+  short_description: "Plan, implement, and review clean engine ports."
+  default_prompt: "Use this skill to analyze, implement, or review a clean engine reimplementation PC port from original data formats."

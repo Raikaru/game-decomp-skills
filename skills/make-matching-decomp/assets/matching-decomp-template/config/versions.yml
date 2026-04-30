@@ -1,0 +1,10 @@
+targets:
+  default:
+    platform: unknown
+    version: unknown
+    artifact_path: artifacts-local/original.bin
+    sha256: replace-with-expected-sha256
+toolchain:
+  compiler: unknown
+  assembler: unknown
+  linker: unknown

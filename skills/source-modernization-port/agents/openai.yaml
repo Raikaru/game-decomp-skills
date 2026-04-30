@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Modernization Port"
+  short_description: "Implement and review modernized source-release ports."
+  default_prompt: "Use this skill to analyze, implement, or review modernization of an available game source release into a maintainable PC port."
