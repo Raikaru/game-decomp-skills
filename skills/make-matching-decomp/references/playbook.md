@@ -68,7 +68,48 @@ Expected deliverables:
 - Use `asm-differ` or project-local diff scripts for fast function-level assembly comparisons.
 dy|- Use `decomp.me` as collaborative scratch space for individual functions, compiler experiments, and shareable matching attempts only with material the project is allowed to upload or share; do not upload copyrighted binaries.
 - Use `m2c` as a starting point for MIPS/PowerPC/ARM source approximations; manually refine before accepting code.
-- Use `decomp-permuter` late, after control flow and semantics are already close; only keep changes that make source-level sense.
+tr|- Use `decomp-permuter` late, after control flow and semantics are already close; only keep changes that make source-level sense.
+
+## Automated Pipeline
+
+For function-by-function matching without manual iteration, orchestrate the
+tools into a retry pipeline with three phases:
+
+### 1. Setup
+- Run `m2ctx.py` or equivalent to extract context (types, macros,
+  signatures) from the project for the target function.
+
+### 2. Programmatic Phase
+- Run `m2c` on the function's assembly to produce a first C attempt.
+- Compile and objdiff the result against the target object.
+- If no match, run `decomp-permuter` to brute-force code mutations
+  for better scores.
+- Pass the best attempt as seed code to the next phase.
+
+### 3. AI-Powered Phase (optional)
+- Send a prompt to an LLM with platform context, similar-function
+  examples, caller/callee signatures, and type definitions (see
+  `references/prompt-construction.md`).
+- **Loop**: LLM submits C → compile → objdiff → diff report back to LLM.
+- Run permuter in the background on each LLM attempt; if it finds a
+  perfect match, short-circuit.
+- Retry on compile errors, timeouts, or partial matches up to a
+  configurable limit.
+
+Benchmarks on 60 functions across N64 and GBA decomp projects show
+a ~74% match rate with 12 attempts per function using this architecture
+(programmatic + Claude Sonnet). The programmatic phase alone matches
+near-zero on GBA (no m2c ARM result matched) and ~7/30 on N64 (m2c +
+permuter). The AI phase does the remaining work.
+
+Known tools implementing this pipeline:
+- **[Mizuchi](https://github.com/macabeus/mizuchi)** (MIT) — full
+  pipeline runner with plugin system, Decomp Atlas UI, and benchmark
+  reporting. Supports ARM, MIPS, PowerPC targets.
+- **[Kappa](https://github.com/macabeus/kappa)** — VS Code extension
+  by the same author; LLM-assisted single-function workflow.
+- **[SK2 Agent](https://github.com/cdlewis/snowboardkids2-decomp)** —
+  Chris Lewis's agentic decomp pipeline (Python, project-specific).
 
 ## Diff Triage
 
